@@ -12,12 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Deploy Production
+name: Deploy PR Preview
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
 
 jobs:
@@ -32,9 +29,17 @@ jobs:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          # Do not delete previews on each production deploy.
-          keep_files: true
+          destination_dir: ./public/previews/${github.event.number}
+      - name: Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: github.event.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "🚀 Staged at https://grayside.github.io/gh-page-previews/previews/${github.event.number}"
+            })
