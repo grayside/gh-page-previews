@@ -27,23 +27,19 @@ jobs:
         with:
           submodules: recursive # Fetch the Docsy theme
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
-      - name: View context attributes
-        uses: actions/github-script@v6
-        with:
-          script: console.log(context.payload)
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          destination_dir: ./public/previews/${github.event.number}
+          destination_dir: ./public/previews/PR-${github.event.number}
       - name: Comment
         uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.createComment({
-              issue_number: github.event.number,
+              issue_number: context.payload.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "🚀 Staged at https://grayside.github.io/gh-page-previews/previews/${github.event.number}"
+              body: "🚀 Staged at https://grayside.github.io/gh-page-previews/previews/${context.payload.number}"
             })
