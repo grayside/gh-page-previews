@@ -27,6 +27,10 @@ jobs:
         with:
           submodules: recursive # Fetch the Docsy theme
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+      - name: View context attributes
+        uses: actions/github-script@v6
+        with:
+          script: console.log(context.github.event)
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with: 
