@@ -27,9 +27,6 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: recursive # Fetch the Docsy theme
-          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
       - name: Build
         run: |
           color='#CBC3E3'
