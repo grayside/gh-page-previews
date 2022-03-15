@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: |
           color='#CBC3E3'
-          version=' &middot; <a href=\"https://github.com/${{ github.repository }}/pull/${{ github.event.number }}\">PR-${{ github.event.number }}</a>'
+          version=' \&middot; <a href=\"https://github.com/${{ github.repository }}/pull/${{ github.event.number }}\">PR-${{ github.event.number }}</a>'
           sed -i "s,#fff,$color,g" $(find ./public -type f)
           sed -i "s,#vvv,$version,g" $(find ./public -type f)
       - name: Deploy

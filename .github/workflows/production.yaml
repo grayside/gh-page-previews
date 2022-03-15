@@ -38,7 +38,7 @@ jobs:
       - name: Build
         run: |
           color='#AFE1AF'
-          version=' &middot; <a href=\"https://github.com/${{ github.repository }}/tree/${{ github.sha }}\">${{ github.sha }}</a>'
+          version=' \&middot; <a href=\"https://github.com/${{ github.repository }}/tree/${{ github.sha }}\">${{ github.sha }}</a>'
           sed -i 's,#fff,$color,g' $(find ./public -type f)
           sed -i 's,#fff,$version,g' $(find ./public -type f)
       - name: Deploy
