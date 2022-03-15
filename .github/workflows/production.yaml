@@ -36,11 +36,11 @@ jobs:
           submodules: recursive # Fetch the Docsy theme
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
       - name: Build
-        # https://docs.github.com/en/actions/using-workflows/reusing-workflows#calling-a-reusable-workflow
-        uses: ./.github/workflows/reusable_build.yaml
-        with:
-          color: "#AFE1AF"
-          version: ' &middot; <a href="https://github.com/${{ github.repository }}/tree/${{ github.sha }}">${{ github.sha }}</a>'
+        run: |
+          color='#AFE1AF'
+          version=' &middot; <a href="https://github.com/${{ github.repository }}/tree/${{ github.sha }}">${{ github.sha }}</a>'
+          sed -i 's/#fff/$color/' public/*
+          sed -i 's/#fff/$version/' public/*
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with: 
