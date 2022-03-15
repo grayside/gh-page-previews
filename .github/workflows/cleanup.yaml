@@ -33,7 +33,8 @@ jobs:
           rm -Rf ./previews/PR-${{ github.event.number }}
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git commit --message "cleanup: preview/PR-${{ github.event.number }}"
+          git add -a previews/PR-${{ github.event.number }}
+          git commit --message "cleanup: previews/PR-${{ github.event.number }}"
           git push
       - name: Comment
         uses: actions/github-script@v6
