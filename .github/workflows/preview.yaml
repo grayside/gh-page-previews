@@ -53,3 +53,4 @@ jobs:
               repo: context.repo.repo,
               body: "🚀 Preview at https://grayside.github.io/gh-page-previews/previews/PR-${{ github.event.number }}"
             })
+            core.info("🚀 Preview at https://grayside.github.io/gh-page-previews/previews/PR-${{ github.event.number }}");
