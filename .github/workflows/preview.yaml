@@ -30,6 +30,12 @@ jobs:
         with:
           submodules: recursive # Fetch the Docsy theme
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+      - name: Build
+        run: |
+          color='#CBC3E3'
+          version=' \&middot; <a href=\"https://github.com/${{ github.repository }}/pull/${{ github.event.number }}\">PR-${{ github.event.number }}</a>'
+          sed -i "s,#fff,$color,g" $(find ./public -type f)
+          sed -i "s,#vvv,$version,g" $(find ./public -type f)
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with: 
