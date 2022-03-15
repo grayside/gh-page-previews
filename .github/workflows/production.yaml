@@ -39,8 +39,8 @@ jobs:
         run: |
           color='#AFE1AF'
           version=' &middot; <a href="https://github.com/${{ github.repository }}/tree/${{ github.sha }}">${{ github.sha }}</a>'
-          sed -i 's/#fff/$color/' public/*
-          sed -i 's/#fff/$version/' public/*
+          sed -i 's/#fff/$color/' $(find ./public -type f)
+          sed -i 's/#fff/$version/' $(find ./public -type f)
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with: 
