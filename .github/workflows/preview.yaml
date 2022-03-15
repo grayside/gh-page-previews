@@ -16,6 +16,9 @@ name: Preview
 
 on:
   pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'public/**'
 
 jobs:
   deploy:

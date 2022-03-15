@@ -18,6 +18,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '.github/workflows/**'
+      - 'public/**'
+
+  # Allow triggering manually.
+  workflow_dispatch:
 
 jobs:
   deploy:
