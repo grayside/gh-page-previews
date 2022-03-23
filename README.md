@@ -24,12 +24,12 @@ links into the deployed site.
 
 ```mermaid
 flowchart LR;
-  commit (Commit Content)
-  push (Push Branch)
-  open (Open Pull Request)
-  gha (GitHub Actions)
-  comment (Comment on PR)
-  deploy (Deploy Preview Site)
+  commit(Commit Content)
+  push(Push Branch)
+  open(Open Pull Request)
+  gha(GitHub Actions)
+  comment(Comment on PR)
+  deploy(Deploy Preview Site)
 
   commit-->push
   push-->open
@@ -42,10 +42,10 @@ flowchart LR;
 
 ```mermaid
 flowchart LR;
-  close (Close Pull Request)
-  gha (GitHub Actions)
-  clean (Remove preview site)
-  comment (Comment on PR)
+  close(Close Pull Request)
+  gha(GitHub Actions)
+  clean(Remove preview site)
+  comment(Comment on PR)
   
   close-->gha
   gha-->clean
