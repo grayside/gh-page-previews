@@ -14,6 +14,8 @@
 
 name: Clean
 
+# This Workflow depends on 'github.event.number',
+# not compatible with branch or manual triggers.
 on:
   pull_request:
     types:
@@ -23,7 +25,8 @@ jobs:
   preview:
     runs-on: ubuntu-20.04
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+      group: preview-${{ github.event.number }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v3
         with:
