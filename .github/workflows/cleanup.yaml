@@ -22,7 +22,9 @@ on:
       - closed
 
 jobs:
-  preview:
+  remove-preview:
+    # Skip this job when run from a fork. No repository write access means the job would fail.
+    if: ${{ !github.event.pull_request.head.repo.fork }}
     runs-on: ubuntu-20.04
     concurrency:
       group: preview-${{ github.event.number }}

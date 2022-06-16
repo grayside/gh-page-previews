@@ -37,6 +37,9 @@ jobs:
           sed -i "s,#fff,$color,g" $(find ./public -type f)
           sed -i "s,#vvv,$version,g" $(find ./public -type f)
       - name: Deploy
+        # Skip this job when run from a fork. No repository write access means the job would fail.
+        # Earlier steps are not skipped to test the build process.
+        if: ${{ !github.event.pull_request.head.repo.fork }}
         uses: peaceiris/actions-gh-pages@v3
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -44,6 +47,8 @@ jobs:
           destination_dir: ./previews/PR-${{ github.event.number }}
           commit_message: ${{ github.event.head_commit.message }}
       - name: Comment
+        # Skip this job when run from a fork. No repository write access means the job would fail.
+        if: ${{ !github.event.pull_request.head.repo.fork }}
         uses: actions/github-script@v6
         with:
           script: |
